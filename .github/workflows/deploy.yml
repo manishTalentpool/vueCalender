@@ -32,9 +32,13 @@ jobs:
           test -f dist/404.html
           grep -q '/vueCalender/assets/' dist/index.html
 
-      - name: Deploy dist to gh-pages branch
+      # Publish built files into /docs on main so GitHub Pages can serve them
+      # while keeping source code at the repo root.
+      - name: Deploy dist to docs/ on main
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          branch: gh-pages
+          branch: main
+          target-folder: docs
           clean: true
+          commit-message: 'deploy: GitHub Pages build'

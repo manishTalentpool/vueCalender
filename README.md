@@ -27,22 +27,26 @@ npm run preview
 
 ## Deploy (GitHub Pages)
 
-**Do not commit or push the `dist` folder** — it stays in `.gitignore`. GitHub Actions builds and deploys it to the `gh-pages` branch for you.
+**Do not commit `dist` or `docs` locally** — both are gitignored. GitHub Actions builds and publishes to the **`docs/`** folder on `main`.
 
-1. Push **source code only** to `main` on GitHub.
-2. In the repo: **Settings → Pages → Build and deployment → Source** → **Deploy from a branch**.
-3. Branch: **`gh-pages`**, folder: **`/ (root)`** — **not** `main`.
-4. After each push to `main`, the [Deploy workflow](.github/workflows/deploy.yml) builds `dist` and updates `gh-pages`.
+1. Push **source code** to `main`.
+2. Wait for **Actions → Deploy to GitHub Pages** to finish (green check).
+3. In the repo: **Settings → Pages → Build and deployment**:
+   - Source: **Deploy from a branch**
+   - Branch: **`main`**
+   - Folder: **`/docs`** ← must **not** be `/ (root)`
+4. Save, wait ~1 minute, hard-refresh the site (Ctrl+F5).
 
 Live URL: `https://manishTalentpool.github.io/vueCalender/`
 
 ### Site blank or broken?
 
-If the page title shows but the app is empty, Pages is probably serving **`main`** (dev `index.html` with `/src/main.js`) instead of the built site.
+View page source on the live URL:
 
-- **Fix:** Pages source must be branch **`gh-pages`**, not `main`.
-- **Re-deploy:** GitHub → **Actions** → **Deploy to GitHub Pages** → **Run workflow**.
-- **Verify:** View page source should reference `/vueCalender/assets/index-….js`, not `/src/main.js`.
+- **Broken:** `<script ... src="/src/main.js">` → Pages folder is still **`/ (root)`**
+- **Working:** `<script ... src="/vueCalender/assets/index-….js">` → Pages folder is **`/docs`**
+
+Re-deploy anytime: **Actions → Deploy to GitHub Pages → Run workflow**.
 
 ## Notes
 

@@ -25,6 +25,16 @@ npm run build
 npm run preview
 ```
 
+## Deploy (GitHub Pages)
+
+**Do not commit or push the `dist` folder** — it stays in `.gitignore`. GitHub Actions builds and deploys it for you.
+
+1. Push **source code only** to `main` on GitHub.
+2. In the repo: **Settings → Pages → Build and deployment → Source** → choose **GitHub Actions**.
+3. After each push to `main`, the [Deploy workflow](.github/workflows/deploy.yml) runs and publishes the site.
+
+Live URL: `https://manishTalentpool.github.io/vueCalender/`
+
 ## Notes
 
 - Vue 2 requires `vue-cal@legacy` per the [Vue Cal installation docs](https://antoniandre.github.io/vue-cal-v4/).

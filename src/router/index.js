@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
+  base: import.meta.env.BASE_URL,
   routes: [
     { path: '/', name: 'home', component: HomeView },
     { path: '/interviewer', name: 'interviewer', component: InterviewerView },

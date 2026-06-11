@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "node scripts/run.cjs dev",
-    "build": "node scripts/run.cjs build",
+    "build": "node scripts/run.cjs build && node scripts/postbuild.cjs",
     "preview": "node scripts/run.cjs preview"
   },
   "optionalDependencies": {

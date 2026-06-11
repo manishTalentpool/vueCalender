@@ -1,0 +1,26 @@
+{
+  "name": "interview-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/run.cjs dev",
+    "build": "node scripts/run.cjs build",
+    "preview": "node scripts/run.cjs preview"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "4.61.0",
+    "@esbuild/win32-x64": "0.21.5"
+  },
+  "dependencies": {
+    "vue": "^2.7.16",
+    "vue-cal": "legacy",
+    "vue-router": "^3.6.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.3",
+    "vite": "^5.4.11"
+  }
+}

@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue2'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+  base: '/vueCalender/',
   plugins: [vue()],
   resolve: {
     alias: {

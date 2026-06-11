@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
@@ -17,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -32,13 +36,16 @@ jobs:
           test -f dist/404.html
           grep -q '/vueCalender/assets/' dist/index.html
 
-      # Publish built files into /docs on main so GitHub Pages can serve them
-      # while keeping source code at the repo root.
-      - name: Deploy dist to docs/ on main
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          branch: main
-          target-folder: docs
-          clean: true
-          commit-message: 'deploy: GitHub Pages build'
+      - name: Publish built site to docs/
+        run: |
+          rm -rf docs
+          cp -r dist docs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f docs
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "deploy: GitHub Pages build"
+            git push
+          fi

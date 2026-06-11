@@ -13,4 +13,5 @@ if (!fs.existsSync(index)) {
 }
 
 fs.copyFileSync(index, path.join(dist, '404.html'))
-console.log('postbuild: copied index.html → 404.html for GitHub Pages')
+fs.writeFileSync(path.join(dist, '.nojekyll'), '')
+console.log('postbuild: copied index.html → 404.html and added .nojekyll for GitHub Pages')
